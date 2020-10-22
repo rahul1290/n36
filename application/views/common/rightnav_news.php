@@ -15,7 +15,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab1.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab1.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab2.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab2.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab3.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab3.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab4.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab4.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab5.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab5.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab1.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab1.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab2.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab2.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab3.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab3.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab4.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab4.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab5.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab5.jpg');?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab1.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab1.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab2.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab2.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab3.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab3.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -251,7 +251,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab4.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab4.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>
@@ -269,7 +269,7 @@
                         <div class="post_img">
                             <div class="img_wrap">
                                 <a href="#">
-                                    <img src="assets/img/header/widget/tab5.jpg" alt="">
+                                    <img src="<?php echo base_url('assets/img/header/widget/tab5.jpg'); ?>" alt="">
                                 </a>
                             </div>
                         </div>

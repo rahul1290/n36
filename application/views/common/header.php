@@ -30,4 +30,4 @@
 	<script src="<?php echo base_url('assets/js/plugins/wow.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
 </head>
-<input type="text" name="baseUrl" id="baseUrl" value="<?php echo base_url(); ?>" />
+<input type="hidden" name="baseUrl" id="baseUrl" value="<?php echo base_url(); ?>" />
