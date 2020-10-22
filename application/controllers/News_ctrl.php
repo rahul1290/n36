@@ -3,8 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class News_ctrl extends CI_Controller {
 
+	public function __construct(){
+        parent::__construct();
+        $this->load->database();
+        $this->load->model(array('News_model'));
+    }
+    
 	function index(){
 		$data = array();
+		$data['menus'] = $this->News_model->menus(); 
+		
 		$data['header'] = $this->load->view('common/header','',true);
 		$data['footer'] = $this->load->view('common/footer','',true);
 		$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
