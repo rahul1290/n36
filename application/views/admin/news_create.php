@@ -4,26 +4,31 @@
            
             <div class="card-body">
                 
-                <form>
+				<?php echo $this->session->flashdata('msg'); ?>
+                <form method="POST" name="f1" action="<?php echo base_url('admin/news/create');?>" enctype="multipart/form-data">
                 	<div class="form-group row">
-                    	<label for="staticEmail" class="col-sm-2 col-form-label">Category</label>
+                    	<label for="staticEmail" class="col-sm-2 col-form-label">Category <span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<select class="multiselect form-control" name="category" id="category">
-                      			<option>Other</option>
-                      			<option>National</option>
-                      		</select>
+							<select id="category" class="form-control" name="category" multiple="multiple">
+								<?php foreach($news_categories as $news_category){ ?>
+									<option value="<?php echo $news_category['name_english']; ?>"> <?php echo $news_category['name_hindi']; ?></option>
+								<?php } ?>
+							</select>
+							<?php echo form_error('category'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label class="col-sm-2 col-form-label">News Headline Hindi</label>
+                    	<label class="col-sm-2 col-form-label">News Headline Hindi<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<input type="text" class="form-control" id="heading_hindi" placeholder="news heading hindi">
+                      		<input type="text" name="heading_hindi" class="form-control" id="heading_hindi" placeholder="news heading hindi">
+							  <?php echo form_error('heading_hindi'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label class="col-sm-2 col-form-label">News Headline English</label>
+                    	<label class="col-sm-2 col-form-label">News Headline English<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<input type="text" class="form-control" id="heading_english" placeholder="news heading english">
+                      		<input type="text" name="heading_english" class="form-control" id="heading_english" placeholder="news heading english">
+							<?php echo form_error('heading_english'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
@@ -33,43 +38,49 @@
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label for="inputPassword" class="col-sm-2 col-form-label">News Content</label>
+                    	<label for="inputPassword" class="col-sm-2 col-form-label">News Content<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<textarea class="form-control" rows="8"></textarea>
+                      		<textarea class="form-control" id="editor" name="content" rows="8"></textarea>
+							<?php echo form_error('content'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
                     	<label class="col-sm-2 col-form-label">Related News</label>
                     	<div class="col-sm-10">
                       		<select class="form-control" name="related_news" id="related_news">
-                      			<option>Related news</option>
+                      			<option value="">Related news</option>
                       		</select>
+							<?php echo form_error('related_news'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label class="col-sm-2 col-form-label">Meta Title</label>
+                    	<label class="col-sm-2 col-form-label">Meta Title<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
                       		<input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="News meta title">
+							<?php echo form_error('meta_title'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label class="col-sm-2 col-form-label">Meta Keyword</label>
+                    	<label class="col-sm-2 col-form-label">Meta Keyword<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<input type="text" class="form-control" id="meta_keyword" placeholder="News meta keyword">
+                      		<input type="text" class="form-control" name="meta_keyword" id="meta_keyword" placeholder="News meta keyword">
+							<?php echo form_error('meta_keyword'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
-                    	<label class="col-sm-2 col-form-label">Meta Description</label>
+                    	<label class="col-sm-2 col-form-label">Meta Description<span class="text-danger">*</span></label>
                     	<div class="col-sm-10">
-                      		<input type="text" class="form-control" id="meta_desc" placeholder="News meta desc.">
+                      		<input type="text" class="form-control" name="meta_desc" id="meta_desc" placeholder="News meta desc.">
+							<?php echo form_error('meta_desc'); ?>
                     	</div>
                   	</div>
                   	<div class="form-group row">
                     	<label class="col-sm-2 col-form-label">Published</label>
                     	<div class="col-sm-10">
                       		<input type="radio" name="published" value="ON">YES
-                      		<input type="radio" name="published" value="OFF">NO
+                      		<input type="radio" name="published" value="OFF" checked>NO
                     	</div>
+						<?php echo form_error('published'); ?>
                   	</div>
                   	<div class="form-group row">
                     	<label class="col-sm-2 col-form-label"></label>
@@ -79,35 +90,11 @@
                     	</div>
                   	</div>
                 </form>
-                
             </div>
         </div>
     </div>
 </main>
 
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('.multiselect').multiselect({
-      buttonText: function(options, select) {
-        if (options.length == 0) {
-          return this.nonSelectedText + ' <b class="caret"></b>';
-        }
-        else {
-          if (options.length > this.numberDisplayed) {
-            return options.length + ' ' + this.nSelectedText + ' <b class="caret"></b>';
-          }
-          else {
-            var selected = '';
-            options.each(function() {
-              var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
- 
-              selected += label + ', ';
-            });
-            return selected.substr(0, selected.length - 2) + ' <b class="caret"></b>';
-          }
-        }
-      }
-    });
-  });
+<script>
+	initSample();
 </script>

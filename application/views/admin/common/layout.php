@@ -1,3 +1,5 @@
+<img src="<?php echo base_url('admin/news_ctrl/image_resize/banner1.png/205/310'); ?>" />
+
 <!DOCTYPE html>
 <html lang="en">
 <?php if(isset($header)){ print_r($header); }?>

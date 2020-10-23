@@ -12,14 +12,14 @@
     <script src="<?php echo base_url('assets/admin/js/jquery-3.5.1.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/js/bootstrap.bundle.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/js/scripts.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/admin/js/Chart.min.js'); ?>" crossorigin="anonymous"></script>
+    <?php /*<script src="<?php echo base_url('assets/admin/js/Chart.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/assets/demo/chart-area-demo.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/admin/assets/demo/chart-bar-demo.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/admin/assets/demo/chart-bar-demo.js'); ?>"></script>*/?>
     <script src="<?php echo base_url('assets/admin/js/jquery.dataTables.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/js/dataTables.bootstrap4.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/assets/demo/datatables-demo.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/admin/js/bootstrap-multiselect.js'); ?>"></script>
-    
+    <script src="<?php echo base_url('assets/admin/js/ckeditor.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/admin/js/sample.js'); ?>"></script>
 </head>
 
 <input type="text" id="baseUrl" name="baseUrl" value="<?php echo base_url();?>" />
