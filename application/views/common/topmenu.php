@@ -7,13 +7,9 @@
 					<div class="col-6 col-lg-8">
 						<div class="newsprk_nav stellarnav">
 							<ul id="newsprk_menu">
-								<li><a href="<?php echo base_url('category/home');?>">Home</a></li>
-								<li><a href="<?php echo base_url('category/pages');?>">Pages</a></li>
-								<li><a href="<?php echo base_url('category/posts');?>">Posts</a></li>
-								<li><a href="<?php echo base_url('category/categories');?>">Categories</a></li>
-								<li><a href="<?php echo base_url('category/world');?>">World</a></li>
-								<li><a href="<?php echo base_url('category/sports');?>">Sports</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<?php foreach($menus as $menu){ ?>
+									<li><a href="<?php echo base_url($menu['link']);?>"><?php echo $menu['name_hindi']; ?></a></li>
+								<?php } ?>
 							</ul>
 						</div>
 						

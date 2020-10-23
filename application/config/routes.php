@@ -8,6 +8,8 @@ $route['category/(:any)'] = 'news_ctrl/category';
 
 $route['admin/login'] = 'admin/Admin_ctrl/admin_login';
 $route['admin/dashboard'] = 'admin/Admin_ctrl/dashboard';
+$route['admin/news'] = 'admin/News_ctrl';
+$route['admin/news/create'] = 'admin/News_ctrl/create';
 
 
 $route['404_override'] = '';

@@ -18,6 +18,8 @@
     <script src="<?php echo base_url('assets/admin/js/jquery.dataTables.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/js/dataTables.bootstrap4.min.js'); ?>" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('assets/admin/assets/demo/datatables-demo.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/admin/js/bootstrap-multiselect.js'); ?>"></script>
+    
 </head>
 
 <input type="text" id="baseUrl" name="baseUrl" value="<?php echo base_url();?>" />
