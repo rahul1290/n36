@@ -12,13 +12,15 @@ class News_ctrl extends CI_Controller {
 	function index(){
 		$data = array();
 		$data['menus'] = $this->News_model->menus(); 
+		$data['random_news'] = $this->News_model->rendom_news();
+		$data['latest_news'] = $this->News_model->latest_news();
 		
 		$data['header'] = $this->load->view('common/header','',true);
 		$data['footer'] = $this->load->view('common/footer','',true);
 		$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['tranding_news'] = $this->load->view('common/tranding_news','',true);
 		$data['topmenu'] = $this->load->view('common/topmenu',$data,true);
-		$data['top_sliding_news'] = $this->load->view('pages/home/top_sliding_news','',true);
+		$data['top_sliding_news'] = $this->load->view('pages/home/top_sliding_news',$data,true);
 		$data['rightnav_news'] = $this->load->view('common/rightnav_news','',true);
 		$data['feature_news'] = $this->load->view('pages/home/feature_news','',true);
 		

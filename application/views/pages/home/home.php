@@ -14,21 +14,26 @@
 					<div class="row">
 						<div class="col-xl-8">
 							<div class="slider_demo2">
+								<?php $c=0; foreach($latest_news as $latestnews){ if($c == 0){ ?>
 								<div class="single_post post_type6 xs-mb30">
 									<div class="post_img gradient1">
-										<img src="assets/img/header/sider-top.jpg" alt="123123">	<!--<span class="tranding">
-											<i class="fas fa-play"></i>
-										</span>-->
+										<?php $img = explode(',', $latestnews['media_files']); ?>
+										<img src="<?php echo base_url('/news_images/').$img[0];?>" alt="123123">
 									</div>
 									<div class="single_post_text">
-										<div class="meta meta_separator1">	<a href="#">TECHNOLOGY</a>
-											<a href="#">March 26, 2020</a>
-										</div>
-										<h4><a class="play_btn" href="video_post1.html">Japan’s virus success has puzzled the world. Is its luck running out?</a></h4>
-										<div class="space-10"></div>
-										<p class="post-p">The property, complete with 30-seat screening from room, a 100-seat amphitheater and a swimming pond with sandy shower…</p>
+										<h4>
+    										<a class="play_btn" href="video_post1.html">
+    											<?php $pos = strpos($latestnews['title_hindi'],' ',200);
+                            				    echo substr($latestnews['title_hindi'],0,$pos ); ?>
+    										</a>
+										</h4>
+										<div class="space-8"></div>
+										<div class="text-info">
+                                    		<small><?php echo $this->my_library->time_elapsed_string($latestnews['created_at']);?></small>
+                                    	</div>
 									</div>
 								</div>
+								<?php } $c++; } ?>
 							</div>
 						</div>
 
