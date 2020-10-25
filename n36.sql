@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2020 at 01:42 AM
+-- Generation Time: Oct 25, 2020 at 05:57 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -61,15 +61,31 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `title_hindi` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `title_english` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `meta_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `meta_keyword` text COLLATE utf8_unicode_ci NOT NULL,
   `meta_desc` text COLLATE utf8_unicode_ci NOT NULL,
   `publish` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
+  `published_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title_hindi`, `title_english`, `slug`, `content`, `meta_title`, `meta_keyword`, `meta_desc`, `publish`, `created_at`, `published_at`, `created_by`, `status`) VALUES
+(1, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'test english', 'test-english-1', '<p>tesing news content&nbsp;</p>', 'news meta', 'news keyword', 'news desc', 1, '2020-10-25 07:59:46', NULL, 1, 1),
+(2, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'politics English', 'politics-English-2', '<p>HEllo news content</p>', 'news meta', 'news keyword', 'news desc', 1, '2020-10-25 08:16:27', NULL, 1, 1),
+(3, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'news english', 'news-english-3', '<p>news content</p>', 'title', 'keyword', 'desc', 0, '2020-10-25 08:28:41', NULL, 1, 1),
+(4, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'mdww', 'mdww-4', '<p>news title</p>', 'asldkfmslqsdf', 'sdfsdf', 'sdfsdf', 1, '2020-10-25 08:36:08', NULL, 1, 1),
+(5, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'test english', 'test-english-1', '<p>tesing news content&nbsp;</p>', 'news meta', 'news keyword', 'news desc', 1, '2020-10-25 07:59:46', NULL, 1, 1),
+(6, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'politics English', 'politics-English-2', '<p>HEllo news content</p>', 'news meta', 'news keyword', 'news desc', 1, '2020-10-25 08:16:27', NULL, 1, 1),
+(7, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'news english', 'news-english-3', '<p>news content</p>', 'title', 'keyword', 'desc', 0, '2020-10-25 08:28:41', NULL, 1, 1),
+(8, 'महाराष्ट्र में उद्धव सरकार ने राजनीतिक, सामाजिक और धार्मिक सभाओं पर प्रतिबंध लगाया हुआ है, जिसके तहत कोरोना के सुरक्षा प्रोटोकॉल को ध्यान में रखते हुए दशहरा रैली ऑडिटोरियम में आयोजित करने का फैसला किया गया था.', 'mdww', 'mdww-4', '<p>news title</p>', 'asldkfmslqsdf', 'sdfsdf', 'sdfsdf', 1, '2020-10-25 08:36:08', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -84,6 +100,17 @@ CREATE TABLE `news_categories` (
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `news_categories`
+--
+
+INSERT INTO `news_categories` (`id`, `news_id`, `category_id`, `status`) VALUES
+(1, 1, 2, 1),
+(2, 1, 4, 1),
+(3, 2, 3, 1),
+(4, 3, 3, 1),
+(5, 4, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -97,6 +124,20 @@ CREATE TABLE `news_media` (
   `media_name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `news_media`
+--
+
+INSERT INTO `news_media` (`id`, `news_id`, `type`, `media_name`, `status`) VALUES
+(1, 1, 'image', '1603609186_banner4.png', 1),
+(2, 2, 'image', '1603610187_sidebar-1.png', 1),
+(3, 4, 'image', '1603611369_404.png', 1),
+(4, 6, 'image', '1603609186_banner4.png', 1),
+(5, 3, 'image', '1603609186_banner4.png', 1),
+(6, 5, 'image', '1603610187_sidebar-1.png', 1),
+(7, 7, 'image', '1603611369_404.png', 1),
+(8, 8, 'image', '1603609186_banner4.png', 1);
 
 -- --------------------------------------------------------
 
@@ -164,19 +205,19 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `news_categories`
 --
 ALTER TABLE `news_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `news_media`
 --
 ALTER TABLE `news_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `news_related`
