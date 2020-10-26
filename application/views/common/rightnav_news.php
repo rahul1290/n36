@@ -11,7 +11,7 @@
                                 <div class="img_wrap">
                                     <a href="#">
                                     	<?php $img = explode(',', $latestnews['media_files']); ?>
-                                        <img src="<?php echo base_url('/news_images/').$img[0]; ?>" alt="">
+                                        <img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=200&height=154">
                                     </a>
                                 </div>
                             </div>
