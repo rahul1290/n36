@@ -22,4 +22,4 @@
     <script src="<?php echo base_url('assets/admin/js/sample.js'); ?>"></script>
 </head>
 
-<input type="text" id="baseUrl" name="baseUrl" value="<?php echo base_url();?>" />
+<input type="hidden" id="baseUrl" name="baseUrl" value="<?php echo base_url();?>" />

@@ -12,65 +12,32 @@
 				<div class="col-12">
 					<div class="feature_carousel owl-carousel nav_style1">
 						<!--CAROUSEL START-->
-						<div class="single_post post_type6 post_type7">
-							<div class="post_img gradient1">
-								<a href="#">
-									<img src="assets/img/feature/feature2.jpg" alt="">
-								</a>
-							</div>
-							<div class="single_post_text">
-								<div class="meta5">	<a href="#">TECHNOLOGY</a>
-									<a href="#">March 26, 2020</a>
-								</div>
-								<h4>
-									<a href="post1.html">Best garden wing supplies for the horticu ltural</a>
-								</h4>
-							</div>
-						</div>
-						<div class="single_post post_type6 post_type7">
-							<div class="post_img gradient1">
-								<img src="assets/img/feature/feature3.jpg" alt="">
-							</div>
-							<div class="single_post_text">
-								<div class="meta5">	<a href="#">TECHNOLOGY</a>
-									<a href="#">March 26, 2020</a>
-								</div>
-								<h4><a href="post1.html">Copa America: Luis Suarez from devastated US</a></h4>
-							</div>
-						</div>
-						<div class="single_post post_type6 post_type7">
-							<div class="post_img gradient1">
-								<img src="assets/img/feature/feature4.jpg" alt="">
-							</div>
-							<div class="single_post_text">
-								<div class="meta5">	<a href="#">TECHNOLOGY</a>
-									<a href="#">March 26, 2020</a>
-								</div>
-								<h4><a href="post1.html">Best garden wing supplies for the horticu ltural</a></h4>
-							</div>
-						</div>
-						<div class="single_post post_type6 post_type7">
-							<div class="post_img gradient1">
-								<img src="assets/img/feature/feature3.jpg" alt="">
-							</div>
-							<div class="single_post_text">
-								<div class="meta5">	<a href="#">TECHNOLOGY</a>
-									<a href="#">March 26, 2020</a>
-								</div>
-								<h4><a href="post1.html">Copa America: Luis Suarez from devastated US</a></h4>
-							</div>
-						</div>
-						<div class="single_post post_type6 post_type7">
-							<div class="post_img gradient1">
-								<img src="assets/img/feature/feature2.jpg" alt="">
-							</div>
-							<div class="single_post_text">
-								<div class="meta5">	<a href="#">TECHNOLOGY</a>
-									<a href="#">March 26, 2020</a>
-								</div>
-								<h4><a href="post1.html">Best garden wing supplies for the horticu ltural</a></h4>
-							</div>
-						</div>
+						<?php foreach($feature_news as $featurenews){ ?>
+    						<div class="single_post post_type6 post_type7">
+    							<div class="post_img gradient1">
+    								<a href="#">
+    									<?php $img = explode(',', $featurenews['media_files']); ?>
+                                        <img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=510&height=640">
+    								</a>
+    							</div>
+    							<div class="single_post_text">
+    								<!-- <div class="meta5">	<a href="#">TECHNOLOGY</a>
+    									<a href="#">March 26, 2020</a>
+    								</div> -->
+    								<h4>
+    									<a href="<?php echo base_url('news/').$featurenews['slug'];?>">
+                                			<?php
+                                			     $pos = strpos($featurenews['title_hindi'],' ',200);
+                                			     echo substr($featurenews['title_hindi'],0,$pos );
+    	                            		 ?>
+                                		</a>
+    								</h4>
+    								<div class="text-info">
+                                		<small><?php echo $this->my_library->time_elapsed_string($featurenews['created_at']);?></small>
+                                	</div>
+    							</div>
+    						</div>
+						<?php } ?>
 					</div>
 					<!--CAROUSEL END-->
 				</div>

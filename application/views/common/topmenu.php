@@ -16,14 +16,14 @@
 					</div>
 					<div class="col-6 col-lg-4 align-self-center">
 						<div class="menu_right">
-							<div class="users_area">
+							<!--<div class="users_area">
 								<ul class="inline">
 									<li class="search_btn"><i class="far fa-search"></i>
 									</li>
 									<li><i class="fal fa-user-circle"></i>
 									</li>
 								</ul>
-							</div>
+							</div>-->
 							<div class="lang d-none d-xl-block">
 								<ul>
 									<li><a href="#">Hindi <i class="far fa-angle-down"></i></a>
@@ -43,10 +43,10 @@
 							<div class="temp d-none d-lg-block">
 								<div class="temp_wap">
 									<div class="temp_icon">
-										<img src="assets/img/icon/temp.png" alt="">
+										<img src="<?php echo base_url('assets/img/icon/temp.png'); ?>" alt="">
 									</div>
-									<h3 class="temp_count">13</h3>
-									<p>San Francisco</p>
+									<h3 class="temp_count">23</h3>
+									<p>Raipur</p>
 								</div>
 							</div>
 						</div>

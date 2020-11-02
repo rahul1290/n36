@@ -6,25 +6,25 @@
 					<div class="trancarousel_area">
 						<p class="trand">Tranding</p>
 						<div class="trancarousel owl-carousel nav_style1">
-							<div class="trancarousel_item">
-								<p><a href="#">Top 10 Best Movies of 2018 So Far: Great Movies</a>
-								</p>
-							</div>
-							<div class="trancarousel_item">
-								<p><a href="#">Top 10 Best Movies of 2018 So Far: Great Movies</a>
-								</p>
-							</div>
-							<div class="trancarousel_item">
-								<p><a href="#">Top 10 Best Movies of 2018 So Far: Great Movies</a>
-								</p>
-							</div>
+							<?php foreach($trending_news as $news){ ?>
+								<div class="trancarousel_item">
+    								<p>
+    									<a href="<?php echo base_url('news/').$news['slug']; ?>">
+    										<?php 
+    										$pos = strpos($news['title_hindi'],' ',190);
+    										echo substr($news['title_hindi'],0,$pos );
+    										?>
+    									</a>
+    								</p>
+    							</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6 col-lg-4 align-self-center">
 					<div class="top_date_social text-right">
 						<div class="paper_date">
-							<p>Thursday, March 26, 2020</p>
+							<p><?php echo date('l, F d, Y'); ?></p>
 						</div>
 						<div class="social1">
 							<ul class="inline">

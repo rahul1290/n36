@@ -4,8 +4,7 @@
             <div id="post1" class="tab-pane fade show in active">
                 <div class="widget tab_widgets mb30">
                     
-                    <?php $c=0; foreach($latest_news as $latestnews){ 
-                    	if($c){ ?>
+                    <?php $c=0; foreach($latest_news as $latestnews){ ?>
                     	<div class="single_post widgets_small">
                             <div class="post_img">
                                 <div class="img_wrap">
@@ -29,12 +28,10 @@
                             	</div>
                             </div>
                         </div>
-                        <?php if($c < 5){ ?>
                         <div class="space-10"></div>
                         <div class="border_black"></div>
                         <div class="space-5"></div>
-                        <?php } ?>
-                    <?php } $c++; } ?>
+                    <?php } ?>
                 </div>
             </div>
             

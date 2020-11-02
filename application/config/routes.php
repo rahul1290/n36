@@ -4,11 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'news_ctrl';
 
 $route['category/(:any)'] = 'news_ctrl/category';
+$route['news/(:any)'] = 'news_ctrl/newsDetailPage/$1'; 
 
-
-$route['admin/login'] = 'admin/Admin_ctrl/admin_login';
+$route['admin'] = 'admin/Admin_ctrl/admin_login';
 $route['admin/dashboard'] = 'admin/Admin_ctrl/dashboard';
-$route['admin/news'] = 'admin/News_ctrl';
+$route['admin/news'] = 'admin/News_ctrl/newslist';
 $route['admin/news/create'] = 'admin/News_ctrl/create';
 
 

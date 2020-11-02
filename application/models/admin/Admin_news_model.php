@@ -18,4 +18,17 @@ class Admin_news_model extends CI_model {
         ));
         return true;
     }
+    
+    
+    function all_news_types(){
+        $this->db->select('*');
+        $result = $this->db->get_where('types',array('status'=>1))->result_array();
+        return $result;
+    }
+    
+    function news_list(){
+        $this->db->select('n.*');
+        $result = $this->db->get_where('news n',array('n.status'=>1))->result_array();
+        return $result;
+    }
 }

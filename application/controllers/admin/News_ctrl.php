@@ -7,25 +7,30 @@ class News_ctrl extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model(array('News_model','admin/Admin_news_model'));
+        
+        if($this->session->userdata('userid') == ''){
+            redirect('admin');
+                          
+        }
     }
 
-	function index(){
+	function newslist(){
 		$data = array();
+		$data['newsList'] = $this->Admin_news_model->news_list();
 		$data['header'] = $this->load->view('admin/common/header','',true);
 		$data['topnav'] = $this->load->view('admin/common/topnav','',true);
 		$data['sidenav'] = $this->load->view('admin/common/sidenav','',true);
-		$data['body'] = $this->load->view('admin/news','',true);
+		$data['body'] = $this->load->view('admin/news',$data,true);
 		$this->load->view('admin/common/layout',$data);
 	}
 	
 
 	function create(){
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
-			$this->form_validation->set_rules('category[]', 'Category', 'required');
+			$this->form_validation->set_rules('type[]', 'News Type', 'required');
 			$this->form_validation->set_rules('heading_hindi', 'Heading Hindi', 'required|trim');
 			$this->form_validation->set_rules('heading_english', 'Heading English', 'required|trim');
 			$this->form_validation->set_rules('content', 'News Content', 'required|trim');
-			//$this->form_validation->set_rules('related_news', 'Related News', 'required');
 			$this->form_validation->set_rules('meta_title', 'Meta Title', 'required');
 			$this->form_validation->set_rules('meta_keyword', 'Meta Keyword', 'required');
 			$this->form_validation->set_rules('meta_desc', 'Meta Description', 'required');
@@ -52,15 +57,15 @@ class News_ctrl extends CI_Controller {
 				if($newsId){
 					$this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|'),'-',$data['title_english']));
 					
-					$news_category = array();
-					foreach($this->input->post('category[]') as $category){
+					$news_type = array();
+					foreach($this->input->post('type[]') as $type){
 						$temp = array();
 						$temp['news_id'] = $newsId;
-						$temp['category_id'] = $category;
-						$news_category[] = $temp;
+						$temp['type'] = $type;
+						$news_type[] = $temp;
 					}
-					if(count($news_category)>0){
-						$this->db->insert_batch('news_categories',$news_category);
+					if(count($news_type)>0){
+						$this->db->insert_batch('news_type',$news_type);
 					}
 					
 					if(count($_FILES['file']['name'])>0){
@@ -121,7 +126,7 @@ class News_ctrl extends CI_Controller {
 			redirect('admin/news/create','refresh');
 		}
 		$data = array(); 
-		$data['news_categories'] = $this->News_model->menus();
+		$data['news_types'] = $this->Admin_news_model->all_news_types();
 	    $data['header'] = $this->load->view('admin/common/header','',true);
 	    $data['topnav'] = $this->load->view('admin/common/topnav','',true);
 	    $data['sidenav'] = $this->load->view('admin/common/sidenav','',true);

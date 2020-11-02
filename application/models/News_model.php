@@ -8,21 +8,47 @@ class News_model extends CI_model {
         $result = $this->db->get_where('menu',array('status'=>1))->result_array();
         return $result; 
     }
-
-    function rendom_news(){
-        $this->db->select('n.*,m.type,m.media_name');
-        $this->db->join('news_media m','m.news_id = n.id AND m.status = 1','left');
-        $this->db->order_by('rand()');
-        $this->db->limit(7);
-        $result = $this->db->get_where('news n',array('n.publish'=>1,'n.status'=>1))->result_array();
-        return $result;
-    }
     
     function latest_news(){
         $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
         $this->db->order_by('n.published_at,n.created_at','desc');
         $this->db->limit(7);
         $result = $this->db->get_where('news n',array('n.publish' => 1,'n.status' => 1))->result_array();
+        return $result;
+    }
+    
+    
+    function today_story(){
+        $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
+        $this->db->join('news n','n.id = nt.news_id AND n.status = 1');
+        $this->db->limit(1);
+        $this->db->order_by('n.published_at,n.created_at','desc');
+        $result = $this->db->get_where('news_type nt',array('nt.type'=>3,'nt.status'=>1))->result_array();
+        return $result;
+    }
+    
+    function trending_news(){
+        $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
+        $this->db->join('news n','n.id = nt.news_id AND n.status = 1');
+        $this->db->limit(7);
+        $this->db->order_by('n.published_at,n.created_at','desc');
+        $result = $this->db->get_where('news_type nt',array('nt.type'=>2,'nt.status'=>1))->result_array();
+        return $result;   
+    }
+    
+    function feature_news(){
+        $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
+        $this->db->join('news n','n.id = nt.news_id AND n.status = 1');
+        $this->db->limit(7);
+        $this->db->order_by('n.published_at,n.created_at','desc');
+        $result = $this->db->get_where('news_type nt',array('nt.type'=>4,'nt.status'=>1))->result_array();
+        return $result;
+    }
+    
+    function news_detail($newsId){
+        $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
+        $this->db->order_by('n.published_at,n.created_at','desc');
+        $result = $this->db->get_where('news n',array('n.slug'=>$newsId,'n.status'=>1))->result_array();
         return $result;
     }
 }

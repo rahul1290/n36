@@ -66,13 +66,13 @@
 				<?php if(isset($upcoming_match)){ print_r($upcoming_match); }?>
 				<?php if(isset($news_letter)){ print_r($news_letter); }?>
 						
-						<div class="col-lg-6 col-lg-12">
+						<!--<div class="col-lg-6 col-lg-12">
 							<div class="banner2 mb30">
 								<a href="#">
 									<img src="assets/img/bg/sidebar-1.png" alt="">
 								</a>
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>
