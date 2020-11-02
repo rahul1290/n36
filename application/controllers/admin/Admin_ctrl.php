@@ -31,7 +31,12 @@ class Admin_ctrl extends CI_Controller {
 		$data = array();
 		$this->load->view('admin/login');
 	}
-
+    
+	function logout(){
+	    session_destroy();
+	    redirect('admin');
+	}
+	
 	function dashboard(){
 		$data = array();
 		$data['header'] = $this->load->view('admin/common/header','',true);

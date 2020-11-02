@@ -17,7 +17,9 @@
                         <a class="nav-link" href="<?php echo base_url('admin/news');?>">News</a>
                     </nav>
                 </div>
-                <div class="sb-sidenav-menu-heading">Logout</div>
+                <div class="sb-sidenav-menu-heading">
+                <a href="<?php echo base_url('admin/Admin_ctrl/logout');?>">Logout</a>
+                </div>
             </div>
         </div>
         <div class="sb-sidenav-footer">

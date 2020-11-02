@@ -19,7 +19,7 @@
                             		<a href="<?php echo base_url('news/').$latestnews['slug'];?>">
                             			<?php
                             			$pos = strpos($latestnews['title_hindi'],' ',200);
-                            			echo substr($latestnews['title_hindi'],0,$pos );
+                            			echo substr($latestnews['title_hindi'],0,200);
 	                            		 ?>
                             		</a>
                             	</h4>

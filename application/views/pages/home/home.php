@@ -22,9 +22,9 @@
 									</div>
 									<div class="single_post_text">
 										<h4>
-    										<a class="play_btn" href="video_post1.html">
+    										<a class="play_btn" href="<?php echo base_url('news/').$latestnews['slug']; ?>">
     											<?php $pos = strpos($latestnews['title_hindi'],' ',200);
-                            				    echo substr($latestnews['title_hindi'],0,$pos ); ?>
+                            				    echo substr($latestnews['title_hindi'],0,200 ); ?>
     										</a>
 										</h4>
 										<div class="space-8"></div>

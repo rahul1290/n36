@@ -10,6 +10,12 @@ class Admin_news_model extends CI_model {
             return false;
         }
     }
+    
+    function news_update($data,$newsId){
+        $this->db->where('id',$newsId);
+        $this->db->update('news',$data);
+        return true;
+    }
 
     function news_slug($newsId,$slug){
         $this->db->where('id',$newsId);
@@ -29,6 +35,14 @@ class Admin_news_model extends CI_model {
     function news_list(){
         $this->db->select('n.*');
         $result = $this->db->get_where('news n',array('n.status'=>1))->result_array();
+        return $result;
+    }
+    
+    function news_detail($newsId){
+        $this->db->select('n.*,
+                (SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files,
+                (select group_concat(nt.type) from news_type nt where nt.news_id = n.id and nt.status = 1) as news_types');
+        $result = $this->db->get_where('news n',array('n.id'=>$newsId,'n.status'=>1))->result_array();
         return $result;
     }
 }
