@@ -23,16 +23,18 @@
                         </thead>
                         <tbody>
                             <?php $c=1; foreach($newsList as $news){ ?>
-                            		<td><?php echo $c; ?></td>
-                            		<td><?php 
-                            			$pos = strpos($news['title_hindi'],' ',200);
-                            			echo substr($news['title_hindi'],0,$pos );
-                                        ?>
-                            		</td>
-                            		<td></td>
-                            		<td></td>
-                            		<td><a href="<?php echo base_url('admin/news/edit/').$news['id']; ?>"><i class="fa fa-pencil"></i></a></td>
-                            <?php } ?>
+                        		<tr>
+                        			<td><?php echo $c; ?></td>
+                        			<td><?php echo substr($news['title_hindi'],0,200); ?></td>
+                        			<td></td>
+                        			<td></td>
+                        			<td>
+                        				<a href="<?php echo base_url('admin/news/edit/').$news['id']; ?>">
+                        					<i class="fa fa-pencil"></i>
+                        				</a>
+                        			</td>
+                        		</tr>
+                            <?php $c++; } ?>
                         </tbody>
                     </table>
                 </div>

@@ -26,10 +26,7 @@
     								</div> -->
     								<h4>
     									<a href="<?php echo base_url('news/').$featurenews['slug'];?>">
-                                			<?php
-                                			     $pos = strpos($featurenews['title_hindi'],' ',200);
-                                			     echo substr($featurenews['title_hindi'],0,$pos );
-    	                            		 ?>
+                                			<?php echo substr($featurenews['title_hindi'],0,200); ?>
                                 		</a>
     								</h4>
     								<div class="text-info">

@@ -19,8 +19,8 @@
 									<h4>
 										<a href="<?php echo base_url('news/').$news['slug'];?>">
 											<?php 
-    											 $pos = strpos($news['title_hindi'],' ',190);
-    											 echo substr($news['title_hindi'],0,$pos );
+    											 //$pos = strpos($news['title_hindi'],' ',190);
+    											 echo substr($news['title_hindi'],0,200);
 											?>
 										</a>
 									</h4>

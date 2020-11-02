@@ -18,7 +18,7 @@
                             	<h4>
                             		<a href="<?php echo base_url('news/').$latestnews['slug'];?>">
                             			<?php
-                            			$pos = strpos($latestnews['title_hindi'],' ',200);
+                            			//$pos = strpos($latestnews['title_hindi'],' ',200);
                             			echo substr($latestnews['title_hindi'],0,200);
 	                            		 ?>
                             		</a>
