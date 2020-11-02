@@ -29,9 +29,11 @@
                             	</div>
                             </div>
                         </div>
+                        <?php if($c < 5){ ?>
                         <div class="space-10"></div>
                         <div class="border_black"></div>
                         <div class="space-5"></div>
+                        <?php } ?>
                     <?php } $c++; } ?>
                 </div>
             </div>
