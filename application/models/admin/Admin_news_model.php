@@ -33,7 +33,7 @@ class Admin_news_model extends CI_model {
     }
     
     function news_list(){
-        $this->db->select('n.*');
+        $this->db->select('n.*,(select group_concat(t.display_name) from news_type nt join types t on t.id = nt.type  where nt.news_id = n.id and nt.status = 1 order by t.id desc) as news_types');
         $result = $this->db->get_where('news n',array('n.status'=>1))->result_array();
         return $result;
     }
