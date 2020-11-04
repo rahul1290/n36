@@ -16,7 +16,7 @@ class News_ctrl extends CI_Controller {
 	function newslist(){
 		$data = array();
 		$data['newsList'] = $this->Admin_news_model->news_list();
-		print_r($data['newsList']); die;
+		//print_r($data['newsList']); die;
 		$data['header'] = $this->load->view('admin/common/header','',true);
 		$data['topnav'] = $this->load->view('admin/common/topnav','',true);
 		$data['sidenav'] = $this->load->view('admin/common/sidenav','',true);

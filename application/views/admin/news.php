@@ -15,7 +15,8 @@
                         <thead class="bg-dark text-light text-center">
                             <tr>
                                 <th>Id</th>
-                                <th>Title</th>
+                                <th>News Type<th>
+                                <th>News Title</th>
                                 <th>Detail</th>
                                 <th>Url</th>
                                 <th>Operation</th>
@@ -25,6 +26,13 @@
                             <?php $c=1; foreach($newsList as $news){ ?>
                         		<tr>
                         			<td><?php echo $c; ?></td>
+                        			<td>
+                        				<?php 
+                        				    $newsTypes = explode(',', $news['news_types']);
+                        				    foreach($newsTypes as $x){ ?>
+                        						<span style="background-color: blanchedalmond;padding: 4px;"><?php echo $x; ?></span>        
+                        			    <?php } ?>
+                        			</td>
                         			<td><?php echo substr($news['title_hindi'],0,200); ?></td>
                         			<td></td>
                         			<td></td>
