@@ -70,7 +70,7 @@ class News_ctrl extends CI_Controller {
 		$data['tranding_news'] = $this->load->view('common/tranding_news',$data,true);
 		$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['topmenu'] = $this->load->view('common/topmenu',$data,true);
-		$data['header'] = $this->load->view('common/header','',true);
+		$data['header'] = $this->load->view('common/header',$data,true);
 		$data['footer'] = $this->load->view('common/footer','',true);
 		$data['body'] = $this->load->view('pages/news_detail',$data,true);
 		$this->load->view('common/layout',$data);

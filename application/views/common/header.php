@@ -1,8 +1,12 @@
 <head>
-
-	<title>NewsPrk</title>
+	<title>News-36 | <?php echo $newsDetail[0]['title_english']; ?> | <?php echo $newsDetail[0]['title_hindi']; ?></title> 
 	<!-- META -->
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta name="description" content="<?php echo $newsDetail[0]['title_english'].' '.$newsDetail[0]['title_hindi']; ?>">
+	<meta name="keywords" content="<?php echo $newsDetail[0]['meta_keyword']; ?>">
+	<meta name="author" content="<?php echo 'News-36 Desk'; ?>">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!--::::: FABICON ICON :::::::-->
 	<link rel="icon" href="<?php echo base_url('assets/img/icon/fabicon.png'); ?>">

@@ -15,10 +15,11 @@
                         <thead class="bg-dark text-light text-center">
                             <tr>
                                 <th>Id</th>
-                                <th>News Type<th>
+                                <th>News Type</th>
                                 <th>News Title</th>
                                 <th>Detail</th>
                                 <th>Url</th>
+								<th>Publish Date</th>
                                 <th>Operation</th>
                             </tr>
                         </thead>
@@ -35,7 +36,10 @@
                         			</td>
                         			<td><?php echo substr($news['title_hindi'],0,200); ?></td>
                         			<td></td>
-                        			<td></td>
+                        			<td>
+										<a href="<?php echo base_url().'news/'.$news['slug']; ?>">News Link</a>
+									</td>
+									<td><?php echo date('d/m/Y :: h:i A',strtotime($news['published_at'])); ?></td>
                         			<td>
                         				<a href="<?php echo base_url('admin/news/edit/').$news['id']; ?>">
                         					<i class="fa fa-pencil"></i>
