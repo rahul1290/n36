@@ -1,15 +1,27 @@
 <head>
-	<title>News-36 | <?php echo $newsDetail[0]['title_english']; ?> | <?php echo $newsDetail[0]['title_hindi']; ?></title> 
+	<title>News-36  <?php 
+	   if(isset($newsDetail[0]['title_english']) && $newsDetail[0]['title_english'] != ''){ 
+			echo '| '.$newsDetail[0]['title_english']; ?> | <?php echo $newsDetail[0]['title_hindi']; 
+		}
+		?></title> 
 	<!-- META -->
 	<meta charset="UTF-8">
-	<meta name="description" content="<?php echo $newsDetail[0]['title_english'].' '.$newsDetail[0]['title_hindi']; ?>">
-	<meta name="keywords" content="<?php echo $newsDetail[0]['meta_keyword']; ?>">
+	<meta name="description" content="<?php
+	       if(isset($newsDetail[0]['title_english']) && $newsDetail[0]['title_english'] != ''){
+	           echo $newsDetail[0]['title_english'].' '.$newsDetail[0]['title_hindi'];
+	       }
+	   ?>">
+	<meta name="keywords" content="<?php
+	       if(isset($newsDetail[0]['meta_keyword']) && $newsDetail[0]['meta_keyword'] != ''){
+	           echo $newsDetail[0]['meta_keyword'];
+	       }
+	      ?>">
 	<meta name="author" content="<?php echo 'News-36 Desk'; ?>">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!--::::: FABICON ICON :::::::-->
-	<link rel="icon" href="<?php echo base_url('assets/img/icon/fabicon.png'); ?>">
+	<link rel="icon" href="<?php echo base_url('assets/img/logo/news-36logo.jpg'); ?>">
 	<!--::::: ALL CSS FILES :::::::-->
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/bootstrap.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/plugins/animate.min.css'); ?>">
@@ -33,5 +45,15 @@
 	<script src="<?php echo base_url('assets/js/plugins/stellarnav.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/plugins/wow.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GL5M8GEF1H"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-GL5M8GEF1H');
+	</script>
 </head>
 <input type="hidden" name="baseUrl" id="baseUrl" value="<?php echo base_url(); ?>" />

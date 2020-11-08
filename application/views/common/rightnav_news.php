@@ -2,7 +2,7 @@
     <div class="widget_tab md-mt-30">
         <div class="tab-content">
             <div id="post1" class="tab-pane fade show in active">
-                <div class="widget tab_widgets mb30">
+                <div class="widget tab_widgets mb20">
                     
                     <?php $c=0; foreach($latest_news as $latestnews){ ?>
                     	<div class="single_post widgets_small">
@@ -17,10 +17,7 @@
                             <div class="single_post_text">
                             	<h4>
                             		<a href="<?php echo base_url('news/').$latestnews['slug'];?>">
-                            			<?php
-                            			//$pos = strpos($latestnews['title_hindi'],' ',200);
-                            			echo substr($latestnews['title_hindi'],0,200);
-	                            		 ?>
+                            			<?php echo substr($latestnews['title_hindi'],0,200); ?>
                             		</a>
                             	</h4>
                             	<div class="text-info">

@@ -46,26 +46,22 @@
 						<div class="space-10"></div>
 						<?php $img = explode(',', $newsDetail[0]['media_files']); ?>
 						<img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=730&height=450">
-						<pre>
-							<?php
-							     echo $newsDetail[0]['content'];
-                    		 ?>
-						</pre>
+						<?php echo $newsDetail[0]['content']; ?>
 					</div>
 					
-					
+					<div class="space-20"></div>
 					<div class="row">
 						<div class="col-lg-6 align-self-center">
 							<div class="author">
 								<div class="author_img">
 									<div class="author_img_wrap">
-										<img src="assets/img/author/author2.png" alt="">
+										<img src="<?php echo base_url('users_pic/').$newsDetail[0]['profile_pic']; ?>" alt="">
 									</div>
-								</div>	<a href="#">Shuvas Chandra</a>
+								</div>	<a href="#"><?php echo $newsDetail[0]['name_h']; ?></a>
 								<ul>
-									<li><a href="#">March 26, 2020</a>
+									<li><a href="#"><?php echo date('F d, Y',strtotime($newsDetail[0]['published_at'])); ?></a>
 									</li>
-									<li>Updated 1:58 p.m. ET</li>
+									<li>Updated <?php echo date('H:i A',strtotime($newsDetail[0]['published_at'])); ?></li>
 								</ul>
 							</div>
 						</div>

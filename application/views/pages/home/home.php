@@ -18,13 +18,12 @@
 								<div class="single_post post_type6 xs-mb30">
 									<div class="post_img gradient1">
 										<?php $img = explode(',', $latestnews['media_files']); ?>
-										<img src="<?php echo base_url('/news_images/').$img[0];?>" alt="123123">
+										<img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=1460&height=1000">
 									</div>
 									<div class="single_post_text">
 										<h4>
     										<a class="play_btn" href="<?php echo base_url('news/').$latestnews['slug']; ?>">
-    											<?php $pos = strpos($latestnews['title_hindi'],' ',200);
-                            				    echo substr($latestnews['title_hindi'],0,200 ); ?>
+    											<?php echo substr($latestnews['title_hindi'],0,200 ); ?>
     										</a>
 										</h4>
 										<div class="space-8"></div>

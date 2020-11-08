@@ -18,9 +18,9 @@ class News_ctrl extends CI_Controller {
 		$data['today_story'] = $this->News_model->today_story();
 		$data['feature_news'] = $this->News_model->feature_news();
 		
-		$data['header'] = $this->load->view('common/header','',true);
+		$data['header'] = $this->load->view('common/header',$data,true);
 		$data['footer'] = $this->load->view('common/footer','',true);
-		$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
+		//$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['tranding_news'] = $this->load->view('common/tranding_news',$data,true);
 		$data['topmenu'] = $this->load->view('common/topmenu',$data,true);
 		$data['top_sliding_news'] = $this->load->view('pages/home/top_sliding_news',$data,true);
@@ -68,7 +68,7 @@ class News_ctrl extends CI_Controller {
 		$data['menus'] = $this->News_model->menus();
 		$data['trending_news'] = $this->News_model->trending_news();
 		$data['tranding_news'] = $this->load->view('common/tranding_news',$data,true);
-		$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
+		//$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['topmenu'] = $this->load->view('common/topmenu',$data,true);
 		$data['header'] = $this->load->view('common/header',$data,true);
 		$data['footer'] = $this->load->view('common/footer','',true);

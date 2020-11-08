@@ -14,16 +14,14 @@
 						<div class="single_post post_type3 post_type11 margintop-60- xs-mb30">
 							<div class="post_img">
 								<div class="img_wrap">
-									<a href="#" class="play_btn">
-										<img src="assets/img/video/video1.jpg" alt="">
-									</a>
-								</div>	<a href="#" class="youtube_middle"><i class="fab fa-youtube"></i></a>
+									<iframe width="560" height="350" src="https://www.youtube.com/embed/SpQ9CQDj1BI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								</div>
 							</div>
 							<div class="single_post_text padding30 fourth_bg">
-								<div class="meta3">	<a href="#">TECHNOLOGY</a>
+								<!-- <div class="meta3">	<a href="#">TECHNOLOGY</a>
 									<a href="#">March 26, 2020</a>
-								</div>
-								<h4><a href="post1.html">Riots Report Shows London Needs To Maintain Police Numbers, Says Mayor</a></h4>
+								</div>-->
+								<h4><a href="post1.html">बेजुबान भी समझते हैं प्रेम की भाषा</a></h4>
 							</div>
 						</div>
 					</div>
@@ -37,14 +35,14 @@
 										<div class="post_img">
 											<div class="img_wrap">
 												<a href="#">
-													<img src="assets/img/popular/popularsm1.jpg" alt="">
+													<img src="https://img.youtube.com/vi/lBI-C7Ie9j4/0.jpg" width="200" height="113" />
 												</a>
 											</div>	<span class="tranding tranding_border">
 												1
 											</span>
 										</div>
 										<div class="single_post_text">
-											<h4><a href="post1.html">The property complete with a 30 seat screen room.</a></h4>
+											<h4><a href="post1.html">प्राचीन व अनूठा मंदिर में आधी रात को सुनाई देता है घोड़े की आवाज</a></h4>
 											<div class="meta4">	<a href="#">TECHNOLOGY</a>
 											</div>
 										</div>

@@ -1,6 +1,5 @@
 <main>
     <div class="container-fluid">
-     
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -19,7 +18,7 @@
                                 <th>News Title</th>
                                 <th>Detail</th>
                                 <th>Url</th>
-								<th>Publish Date</th>
+								<th>Published / Date</th>
                                 <th>Operation</th>
                             </tr>
                         </thead>
@@ -31,7 +30,7 @@
                         				<?php 
                         				    $newsTypes = explode(',', $news['news_types']);
                         				    foreach($newsTypes as $x){ ?>
-                        						<span style="background-color: blanchedalmond;padding: 4px;"><?php echo $x; ?></span>        
+                        						<span class="mt-4" style="background-color: blanchedalmond;padding: 4px;"><?php echo $x; ?></span>        
                         			    <?php } ?>
                         			</td>
                         			<td><?php echo substr($news['title_hindi'],0,200); ?></td>
@@ -39,7 +38,20 @@
                         			<td>
 										<a href="<?php echo base_url().'news/'.$news['slug']; ?>">News Link</a>
 									</td>
-									<td><?php echo date('d/m/Y :: h:i A',strtotime($news['published_at'])); ?></td>
+									<td>
+										<?php 
+											if($news['publish']){
+												echo '<input type="checkbox" checked>';
+											} else {
+												echo '<input type="checkbox">';	
+											}
+											
+											if(is_null($news['published_at'])){
+												echo '';
+											} else { 
+												echo date('d-m-y :: h:i A',strtotime($news['published_at'])); 
+											} ?>
+									</td>
                         			<td>
                         				<a href="<?php echo base_url('admin/news/edit/').$news['id']; ?>">
                         					<i class="fa fa-pencil"></i>

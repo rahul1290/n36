@@ -4,7 +4,7 @@
 				<div class="col-lg-4 align-self-center">
 					<div class="logo">
 						<a href="<?php echo base_url(); ?>">
-							<img src="<?php echo base_url('assets/img/logo/logo.png'); ?>" alt="image">
+							<img width="50" src="<?php echo base_url('assets/img/logo/news-36logo.jpg'); ?>" alt="image">
 						</a>
 					</div>
 				</div>
