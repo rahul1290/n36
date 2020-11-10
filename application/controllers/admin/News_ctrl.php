@@ -100,7 +100,7 @@ class News_ctrl extends CI_Controller {
 							else{
 								$client_name = $this->upload->data('client_name');
 								$Path = $this->upload->data('file_path');
-								$fullPath = $this->upload->data('full_path'); 
+								$fullPath = $this->upload->data('full_path');
 								
 								$fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
 								$filePath = $Path.$fileName;
@@ -111,7 +111,9 @@ class News_ctrl extends CI_Controller {
 								$temp['fullPath'] = $fullPath;
 								$temp['msg'] = 'File uploaded';
 								$temp['status'] =  true;
-	
+								
+								//convertImageToWebP()
+								
 								$data = array();
 								$data['news_id '] = $newsId;
 								$data['type'] = 'image';
@@ -137,7 +139,6 @@ class News_ctrl extends CI_Controller {
 	
 	function news_edit($newsId){
 	    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-	        
 	        $this->form_validation->set_rules('type[]', 'News Type', 'required');
 	        $this->form_validation->set_rules('heading_hindi', 'Heading Hindi', 'required|trim');
 	        $this->form_validation->set_rules('heading_english', 'Heading English', 'required|trim');
@@ -216,8 +217,8 @@ class News_ctrl extends CI_Controller {
     	                            $client_name = $this->upload->data('client_name');
     	                            $Path = $this->upload->data('file_path');
     	                            $fullPath = $this->upload->data('full_path');
-    	                            
     	                            $fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
+    	                            $resizefilename = $fileName;
     	                            $filePath = $Path.$fileName;
     	                            
     	                            $temp['image'] = $fileName.'.jpg';
@@ -227,11 +228,20 @@ class News_ctrl extends CI_Controller {
     	                            $temp['msg'] = 'File uploaded';
     	                            $temp['status'] =  true;
     	                            
+    	                            
+    	                            $FileNameTokens = explode('.', $this->upload->data('file_name'));
+    	                            array_pop($FileNameTokens);
+    	                            $baseName = implode(".", $FileNameTokens);
+    	                            
+    	                            $this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
+    	                            unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
+    	                            
     	                            $data = array();
     	                            $data['news_id '] = $newsId;
     	                            $data['type'] = 'image';
-    	                            $data['media_name'] = $this->upload->data('file_name');
+    	                            $data['media_name'] = $baseName.'.webp';
     	                            $this->db->insert('news_media',$data);
+    	                            
     	                        }
     	                    }
     	                }  //image upload
@@ -249,6 +259,19 @@ class News_ctrl extends CI_Controller {
 	    $data['sidenav'] = $this->load->view('admin/common/sidenav','',true);
 	    $data['body'] = $this->load->view('admin/news_edit',$data,true);
 	    $this->load->view('admin/common/layout',$data);
+	}
+	
+	
+	function convertImageToWebP($source, $destination, $quality=80) {
+	    $extension = pathinfo($source, PATHINFO_EXTENSION);
+	    if ($extension == 'jpeg' || $extension == 'jpg'){
+	        $image = imagecreatefromjpeg($source);
+	    } elseif ($extension == 'gif') {
+	        $image = imagecreatefromgif($source);
+	    } elseif ($extension == 'png' || $extension == 'PNG') {
+	        $image = imagecreatefrompng($source);
+	    }
+	    return imagewebp($image, $destination, $quality);
 	}
 	
 	function image_del(){
