@@ -27,11 +27,14 @@ class News_model extends CI_model {
         return $result;
     }
     
-    function trending_news(){
+    function trending_news($newsId=null){
         $this->db->select('n.*,(SELECT GROUP_CONCAT(nm.media_name) from news_media nm WHERE nm.news_id = n.id) media_files');
         $this->db->join('news n','n.id = nt.news_id AND n.status = 1');
         $this->db->limit(7);
         $this->db->order_by('n.published_at,n.created_at','desc');
+		if($newsId != null){
+			$this->db->where('n.slug <>',$newsId);
+		}
         $result = $this->db->get_where('news_type nt',array('nt.type'=>2,'n.publish'=>1,'nt.status'=>1))->result_array();
         return $result;   
     }
@@ -52,4 +55,11 @@ class News_model extends CI_model {
         $result = $this->db->get_where('news n',array('n.slug'=>$newsId,'n.publish'=>1,'n.status'=>1))->result_array();
         return $result;
     }
+	
+	function video_news(){
+		$this->db->select('*');
+		$this->db->order_by('orderby','desc');
+		$result = $this->db->get_where('videos',array('status'=>1,'is_published'=>1))->result_array();
+		return $result;
+	}
 }

@@ -16,6 +16,9 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="<?php echo base_url('admin/news');?>">News</a>
                     </nav>
+					<nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="<?php echo base_url('admin/video');?>">Video's</a>
+                    </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">
                 <a href="<?php echo base_url('admin/Admin_ctrl/logout');?>">Logout</a>

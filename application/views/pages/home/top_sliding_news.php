@@ -9,9 +9,15 @@
 							<div class="single_post widgets_small post_type5">
 								<div class="post_img">
 									<div class="img_wrap">
-										<a href="<?php echo base_url('category/other/').$news['slug'];?>">
-											<?php $img = explode(',', $news['media_files']); ?>
-											<img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=80&height=70">
+										<a href="<?php echo base_url('news/').$news['slug'];?>">
+											<?php $img = explode(',', $news['media_files']); 
+											if(file_get_contents(base_url('news_images/').$img[0])){
+												$src = base_url('news_images/200X154/').$img[0];
+											} else {
+												$src = base_url('assets/img/logo/news-36logo_blur.png');
+											}
+											?>											
+											<img src="<?php echo $src; ?>" width="80" height="70" />
 										</a>
 									</div>
 								</div>

@@ -55,7 +55,10 @@
                         			<td>
                         				<a href="<?php echo base_url('admin/news/edit/').$news['id']; ?>">
                         					<i class="fa fa-pencil"></i>
+											Edit
                         				</a>
+										
+										<a href="javascript:void(0);" class="news_del" data-id="<?php echo $news['id']; ?>">Delete</a>
                         			</td>
                         		</tr>
                             <?php $c++; } ?>
@@ -66,3 +69,22 @@
         </div>
     </div>
 </main>
+
+<script>
+	$(document).on('click','.news_del',function(){
+		var baseUrl = $('#baseUrl').val();
+		var newsId = $(this).data('id');
+		$.ajax({
+			type:'POST',
+			url:baseUrl+'admin/news_ctrl/news_delete/'+newsId,
+			data:{
+				'n_id' : newsId,
+			},			
+			dataType:'json',
+			success:function(response){				
+				alert(response.msg);				
+				location.reload();			
+			},		
+		});
+	});
+</script>

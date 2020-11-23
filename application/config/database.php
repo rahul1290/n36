@@ -7,9 +7,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => '148.66.138.141',
+	'username' => 'news36',
+	'password' => 'news@36',
 	'database' => 'n36',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
