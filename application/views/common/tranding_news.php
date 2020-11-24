@@ -11,7 +11,6 @@
     								<p>
     									<a href="<?php echo base_url('news/').$news['slug']; ?>">
     										<?php 
-    										//$pos = strpos($news['title_hindi'],' ',190);
     										echo substr($news['title_hindi'],0,200);
     										?>
     									</a>
@@ -32,7 +31,7 @@
 								</li>
 								<li><a href="#"><i class="fab fa-facebook-f"></i></a>
 								</li>
-								<li><a href="#"><i class="fab fa-youtube"></i></a>
+								<li><a target="_blank" href="https://www.youtube.com/channel/UClf0kewyW6qo6rTVqEbrwdg"><i class="fab fa-youtube"></i></a>
 								</li>
 								<li><a href="#"><i class="fab fa-instagram"></i></a>
 								</li>

@@ -1,5 +1,4 @@
 <body class="theme-1">
-	
 	<?php if(isset($tranding_news)){ print_r($tranding_news); }?>
 	<!--::::: LOGO AREA START  :::::::-->
 	<?php if(isset($brand_logo)){ print_r($brand_logo); }?>
@@ -14,21 +13,21 @@
 					<div class="row">
 						<div class="col-xl-8">
 							<div class="slider_demo2">
-								<?php $c=0; foreach($latest_news as $latestnews){ if($c == 0){ ?>
+								<?php $c=0; foreach($today_story as $news){ if($c == 0){?>
 								<div class="single_post post_type6 xs-mb30">
 									<div class="post_img gradient1">
-										<?php $img = explode(',', $latestnews['media_files']); ?>
-										<img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=1460&height=1000">
+										<?php $img = explode(',', $news['media_files']); ?>										
+										<img src="<?php echo base_url('news_images/').$img[0]; ?>"/>
 									</div>
 									<div class="single_post_text">
 										<h4>
-    										<a class="play_btn" href="<?php echo base_url('news/').$latestnews['slug']; ?>">
-    											<?php echo substr($latestnews['title_hindi'],0,200 ); ?>
+    										<a class="play_btn1" href="<?php echo base_url('news/').$news['slug']; ?>">
+    											<?php echo substr($news['title_hindi'],0,200 ); ?>
     										</a>
 										</h4>
 										<div class="space-8"></div>
 										<div class="text-info">
-                                    		<small><?php echo $this->my_library->time_elapsed_string($latestnews['created_at']);?></small>
+                                    		<small><?php echo $this->my_library->time_elapsed_string($news['created_at']);?></small>
                                     	</div>
 									</div>
 								</div>

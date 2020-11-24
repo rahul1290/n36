@@ -1,16 +1,30 @@
+<?php 
+//print_r($today_story); die;
+$todayNews = $today_story[0]['id'];
+?>
 <div class="col-xl-4">
     <div class="widget_tab md-mt-30">
         <div class="tab-content">
             <div id="post1" class="tab-pane fade show in active">
                 <div class="widget tab_widgets mb20">
                     
-                    <?php $c=0; foreach($latest_news as $latestnews){ ?>
+                    <?php $c=0; foreach($latest_news as $latestnews){
+						if($latestnews['id'] == $todayNews){
+							continue;
+						}
+						?>
                     	<div class="single_post widgets_small">
                             <div class="post_img">
                                 <div class="img_wrap">
                                     <a href="#">
-                                    	<?php $img = explode(',', $latestnews['media_files']); ?>
-                                        <img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=200&height=154">
+                                    	<?php $img = explode(',', $latestnews['media_files']); 
+											if(file_get_contents(base_url('news_images/200X154/').$img[0])){
+												$src = base_url('news_images/200X154/').$img[0];
+											} else {
+												$src = base_url('assets/img/logo/news-36logo_blur.png');
+											}
+										?>
+										<img src="<?php echo $src; ?>" />
                                     </a>
                                 </div>
                             </div>

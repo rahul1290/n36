@@ -48,6 +48,7 @@ class News_ctrl extends CI_Controller {
 				
 				if($publish == 'ON'){
 					$data['publish'] = 1;
+					$data['published_at'] = date('Y-m-d H:i:s');
 				} else {
 					$data['publish'] = 0;
 				}
@@ -55,7 +56,7 @@ class News_ctrl extends CI_Controller {
 				$data['created_by'] = '1';
 				$newsId = $this->Admin_news_model->news_create($data);
 				if($newsId){
-					$this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|'),'-',$data['title_english']));
+					$this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|%,'),'-',$data['title_english']));
 					
 					$news_type = array();
 					foreach($this->input->post('type[]') as $type){
@@ -98,26 +99,89 @@ class News_ctrl extends CI_Controller {
 								$messages[] = '';
 							}
 							else{
-								$client_name = $this->upload->data('client_name');
-								$Path = $this->upload->data('file_path');
-								$fullPath = $this->upload->data('full_path');
+								$this->load->library('image_lib');
+								$config['image_library'] = 'gd2';
+								$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+								$config['create_thumb'] = false;
+								$config['maintain_ratio'] = false;
+								$config['width']     = 1460;
+								$config['height']   = 1000;
+
+								$this->image_lib->clear();
+								$this->image_lib->initialize($config);
+								$this->image_lib->resize();
 								
-								$fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
-								$filePath = $Path.$fileName;
+								$FileNameTokens = explode('.', $this->upload->data('file_name'));
+								array_pop($FileNameTokens);
+								$baseName = implode(".", $FileNameTokens);
+								$this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
 								
-								$temp['image'] = $fileName.'.jpg';
-								$temp['client_name'] = $client_name;
-								$temp['file_name'] = $this->upload->data('file_name');
-								$temp['fullPath'] = $fullPath;
-								$temp['msg'] = 'File uploaded';
-								$temp['status'] =  true;
+								///////////////////////////////////////////////
+								$this->load->library('image_lib');
+								$config['image_library'] = 'gd2';
+								$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+								$config['create_thumb'] = false;
+								$config['maintain_ratio'] = false;
+								$config['width']     = 730;
+								$config['height']   = 450;
+								$config['new_image']   = './news_images/730X450/'.$this->upload->data('file_name');
+
+								$this->image_lib->clear();
+								$this->image_lib->initialize($config);
+								$this->image_lib->resize();
 								
-								//convertImageToWebP()
+								$FileNameTokens = explode('.', $this->upload->data('file_name'));
+								array_pop($FileNameTokens);
+								$baseName = implode(".", $FileNameTokens);
+								$this->convertImageToWebP(APPPATH.'../news_images/730X450/'.$this->upload->data('file_name'),'./news_images/730X450/'.$baseName.'.webp');
 								
+								///////////////////////////////////////////////
+								$this->load->library('image_lib');
+								$config['image_library'] = 'gd2';
+								$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+								$config['create_thumb'] = false;
+								$config['maintain_ratio'] = false;
+								$config['width']     = 200;
+								$config['height']   = 154;
+								$config['new_image']   = './news_images/200X154/'.$this->upload->data('file_name');
+
+								$this->image_lib->clear();
+								$this->image_lib->initialize($config);
+								$this->image_lib->resize();
+								
+								$FileNameTokens = explode('.', $this->upload->data('file_name'));
+								array_pop($FileNameTokens);
+								$baseName = implode(".", $FileNameTokens);
+								$this->convertImageToWebP(APPPATH.'../news_images/200X154/'.$this->upload->data('file_name'),'./news_images/200X154/'.$baseName.'.webp');
+								unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
+								unlink(APPPATH.'../news_images/730X450/'.$this->upload->data('file_name'));
+								unlink(APPPATH.'../news_images/200X154/'.$this->upload->data('file_name'));
+								
+								///////////////////////////////////////////////
+								// $client_name = $this->upload->data('client_name');
+								// $Path = $this->upload->data('file_path');
+								// $fullPath = $this->upload->data('full_path'); 
+								
+								// $fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
+								// $filePath = $Path.$fileName;
+								
+								// $temp['image'] = $fileName.'.jpg';
+								// $temp['client_name'] = $client_name;
+								// $temp['file_name'] = $this->upload->data('file_name');
+								// $temp['fullPath'] = $fullPath;
+								// $temp['msg'] = 'File uploaded';
+								// $temp['status'] =  true;
+								
+								// $FileNameTokens = explode('.', $this->upload->data('file_name'));
+								// array_pop($FileNameTokens);
+								// $baseName = implode(".", $FileNameTokens);
+								// $this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
+    	                        // unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
+	
 								$data = array();
 								$data['news_id '] = $newsId;
 								$data['type'] = 'image';
-								$data['media_name'] = $this->upload->data('file_name');
+								$data['media_name'] = $baseName.'.webp';
 								$this->db->insert('news_media',$data);
 							}
 						}
@@ -139,6 +203,7 @@ class News_ctrl extends CI_Controller {
 	
 	function news_edit($newsId){
 	    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+	        
 	        $this->form_validation->set_rules('type[]', 'News Type', 'required');
 	        $this->form_validation->set_rules('heading_hindi', 'Heading Hindi', 'required|trim');
 	        $this->form_validation->set_rules('heading_english', 'Heading English', 'required|trim');
@@ -167,7 +232,7 @@ class News_ctrl extends CI_Controller {
 	            $data['created_by'] = '1';
 	            $newsUpdate = $this->Admin_news_model->news_update($data,$newsId);
 	            if($newsUpdate){
-	                $this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|'),'-',$data['title_english']));
+	                $this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|%,'),'-',$data['title_english']));
 	                
 	                $news_type = array();
 	                foreach($this->input->post('type[]') as $type){
@@ -214,34 +279,90 @@ class News_ctrl extends CI_Controller {
     	                            $messages[] = '';
     	                        }
     	                        else{
-    	                            $client_name = $this->upload->data('client_name');
-    	                            $Path = $this->upload->data('file_path');
-    	                            $fullPath = $this->upload->data('full_path');
-    	                            $fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
-    	                            $resizefilename = $fileName;
-    	                            $filePath = $Path.$fileName;
+									$this->load->library('image_lib');
+									$config['image_library'] = 'gd2';
+									$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+									$config['create_thumb'] = false;
+									$config['maintain_ratio'] = false;
+									$config['width']     = 1460;
+									$config['height']   = 1000;
+
+									$this->image_lib->clear();
+									$this->image_lib->initialize($config);
+									$this->image_lib->resize();
+									
+									$FileNameTokens = explode('.', $this->upload->data('file_name'));
+									array_pop($FileNameTokens);
+									$baseName = implode(".", $FileNameTokens);
+									$this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
+									
+									///////////////////////////////////////////////
+									$this->load->library('image_lib');
+									$config['image_library'] = 'gd2';
+									$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+									$config['create_thumb'] = false;
+									$config['maintain_ratio'] = false;
+									$config['width']     = 730;
+									$config['height']   = 450;
+									$config['new_image']   = './news_images/730X450/'.$this->upload->data('file_name');
+
+									$this->image_lib->clear();
+									$this->image_lib->initialize($config);
+									$this->image_lib->resize();
+									
+									$FileNameTokens = explode('.', $this->upload->data('file_name'));
+									array_pop($FileNameTokens);
+									$baseName = implode(".", $FileNameTokens);
+									$this->convertImageToWebP(APPPATH.'../news_images/730X450/'.$this->upload->data('file_name'),'./news_images/730X450/'.$baseName.'.webp');
+									
+									///////////////////////////////////////////////
+									$this->load->library('image_lib');
+									$config['image_library'] = 'gd2';
+									$config['source_image'] = './news_images/'.$this->upload->data('file_name');
+									$config['create_thumb'] = false;
+									$config['maintain_ratio'] = false;
+									$config['width']     = 200;
+									$config['height']   = 154;
+									$config['new_image']   = './news_images/200X154/'.$this->upload->data('file_name');
+
+									$this->image_lib->clear();
+									$this->image_lib->initialize($config);
+									$this->image_lib->resize();
+									
+									$FileNameTokens = explode('.', $this->upload->data('file_name'));
+									array_pop($FileNameTokens);
+									$baseName = implode(".", $FileNameTokens);
+									$this->convertImageToWebP(APPPATH.'../news_images/200X154/'.$this->upload->data('file_name'),'./news_images/200X154/'.$baseName.'.webp');
+									unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
+									unlink(APPPATH.'../news_images/730X450/'.$this->upload->data('file_name'));
+									unlink(APPPATH.'../news_images/200X154/'.$this->upload->data('file_name'));
+									
+    	                            // $client_name = $this->upload->data('client_name');
+    	                            // $Path = $this->upload->data('file_path');
+    	                            // $fullPath = $this->upload->data('full_path');
     	                            
-    	                            $temp['image'] = $fileName.'.jpg';
-    	                            $temp['client_name'] = $client_name;
-    	                            $temp['file_name'] = $this->upload->data('file_name');
-    	                            $temp['fullPath'] = $fullPath;
-    	                            $temp['msg'] = 'File uploaded';
-    	                            $temp['status'] =  true;
+    	                            // $fileName = pathinfo($this->upload->data('file_name'), PATHINFO_FILENAME);
+    	                            // $filePath = $Path.$fileName;
     	                            
-    	                            
-    	                            $FileNameTokens = explode('.', $this->upload->data('file_name'));
-    	                            array_pop($FileNameTokens);
-    	                            $baseName = implode(".", $FileNameTokens);
-    	                            
-    	                            $this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
-    	                            unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
+    	                            // $temp['image'] = $fileName.'.jpg';
+    	                            // $temp['client_name'] = $client_name;
+    	                            // $temp['file_name'] = $this->upload->data('file_name');
+    	                            // $temp['fullPath'] = $fullPath;
+    	                            // $temp['msg'] = 'File uploaded';
+    	                            // $temp['status'] =  true;
+									
+									// $FileNameTokens = explode('.', $this->upload->data('file_name'));
+    	                            // array_pop($FileNameTokens);
+    	                            // $baseName = implode(".", $FileNameTokens);
+									
+									// $this->convertImageToWebP(APPPATH.'../news_images/'.$this->upload->data('file_name'),'./news_images/'.$baseName.'.webp');
+    	                            // unlink(APPPATH.'../news_images/'.$this->upload->data('file_name'));
     	                            
     	                            $data = array();
     	                            $data['news_id '] = $newsId;
     	                            $data['type'] = 'image';
     	                            $data['media_name'] = $baseName.'.webp';
     	                            $this->db->insert('news_media',$data);
-    	                            
     	                        }
     	                    }
     	                }  //image upload
@@ -260,7 +381,6 @@ class News_ctrl extends CI_Controller {
 	    $data['body'] = $this->load->view('admin/news_edit',$data,true);
 	    $this->load->view('admin/common/layout',$data);
 	}
-	
 	
 	function convertImageToWebP($source, $destination, $quality=80) {
 	    $extension = pathinfo($source, PATHINFO_EXTENSION);
@@ -281,7 +401,20 @@ class News_ctrl extends CI_Controller {
 	    $this->db->delete('news_media');
 	    
 	    unlink('news_images/'.$image);
-	    return true;
+	    echo json_encode(array('msg'=>'file deleted.','status'=>200));
+	}
+	
+	function news_delete($news_id){
+		// $this->db->select('*');
+		// $results = $this->db->get_where('news_media',array('news_id'=>$news_id));
+	
+		$this->db->where('id',$news_id);
+		$this->db->update('news',array('status'=>0));
+		// foreach($results as $result){
+			// unlink('news_images/'.$result['media_name']);
+		// }
+		
+		echo json_encode(array('msg'=>'news deleted.','status'=>200));
 	}
 	
 }

@@ -466,7 +466,6 @@ class CI_Upload {
 			$this->set_error('upload_invalid_filetype', 'debug');
 			return FALSE;
 		}
-
 		// if we're overriding, let's now make sure the new name and type is allowed
 		if ($this->_file_name_override !== '')
 		{
@@ -917,7 +916,6 @@ class CI_Upload {
 				? in_array($this->file_type, $this->_mimes[$ext], TRUE)
 				: ($this->_mimes[$ext] === $this->file_type);
 		}
-
 		return FALSE;
 	}
 

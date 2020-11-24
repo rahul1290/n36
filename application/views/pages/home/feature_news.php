@@ -16,8 +16,14 @@
     						<div class="single_post post_type6 post_type7">
     							<div class="post_img gradient1">
     								<a href="#">
-    									<?php $img = explode(',', $featurenews['media_files']); ?>
-                                        <img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=510&height=640">
+    									<?php $img = explode(',', $featurenews['media_files']); 
+										if(file_get_contents(base_url('news_images/').$img[0])){
+											$src = base_url('news_images/730X450/').$img[0];
+										} else {
+											$src = base_url('assets/img/logo/news-36logo_blur.png');
+										}
+										?>										
+										<img src="<?php echo $src; ?>" width="510" height="340" />
     								</a>
     							</div>
     							<div class="single_post_text">

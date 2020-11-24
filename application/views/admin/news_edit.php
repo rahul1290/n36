@@ -45,8 +45,10 @@
 								$files = explode(',', $newsDetail[0]['media_files']);
 								foreach($files as $files){ 
 								    if($files != ''){ ?>
-								    <img width="150" height="150" src="<?php echo base_url('news_images/').$files; ?>"/>
-								    <span><a class="delete_img" data-id="<?php echo $newsDetail[0]['id'];?>" data-name="<?php echo $files; ?>" href="javascript:void(0);">X</a></span>
+								    <span>
+										<img width="150" height="150" src="<?php echo base_url('news_images/').$files; ?>"/>
+										<a class="delete_img" data-id="<?php echo $newsDetail[0]['id'];?>" data-name="<?php echo $files; ?>" href="javascript:void(0);">X</a>
+									</span>
 								<?php } }
 								?>
 							</span>
@@ -132,6 +134,7 @@
 		$(document).on('click','.delete_img',function(){
 			var newsId = $(this).data('id');
 			var image = $(this).data('name');
+			var that = this;
 			
 			 $.ajax({
 	        	type: 'POST',
@@ -146,6 +149,7 @@
 	            },
 	        	success: function(response){
 		        	alert('file deleted');
+					$(that).closest('span').hide();
 	        	}
 			 });
 		});

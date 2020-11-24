@@ -7,7 +7,9 @@
 					<div class="col-6 col-lg-8">
 						<div class="newsprk_nav stellarnav">
 							<ul id="newsprk_menu">
-								<img width="50" src="<?php echo base_url('assets/img/logo/news-36logo.jpg'); ?>" alt="image">
+								<a href="<?php echo base_url();?>">
+									<img width="50" src="<?php echo base_url('assets/img/logo/News-36logo.png'); ?>" alt="image">
+								</a>
 								<?php foreach($menus as $menu){ ?>
 									<li><a href="<?php echo base_url($menu['link']);?>"><?php echo $menu['name_hindi']; ?></a></li>
 								<?php } ?>

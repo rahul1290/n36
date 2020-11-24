@@ -12,13 +12,13 @@ class News_ctrl extends CI_Controller {
 	function index(){
 		$data = array();
 		$data['menus'] = $this->News_model->menus(); 
-		
 		$data['trending_news'] = $this->News_model->trending_news();
 		$data['latest_news'] = $this->News_model->latest_news();
 		$data['today_story'] = $this->News_model->today_story();
 		$data['feature_news'] = $this->News_model->feature_news();
+		$data['video_news'] = $this->News_model->video_news();
 		
-		$data['header'] = $this->load->view('common/header',$data,true);
+		$data['header'] = $this->load->view('common/header','',true);
 		$data['footer'] = $this->load->view('common/footer','',true);
 		//$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['tranding_news'] = $this->load->view('common/tranding_news',$data,true);
@@ -30,7 +30,7 @@ class News_ctrl extends CI_Controller {
 		$inner = array();
 		$inner['most_view_news'] = $this->load->view('pages/home/most_view_news','',true);
 		//$data['trandings_news'] = $this->load->view('pages/home/tranding_news',$inner,true);
-		$data['video_news'] = $this->load->view('pages/home/video_news','',true);
+		$data['video_news'] = $this->load->view('pages/home/video_news',$data,true);
 		
 		
 		$inner = array();
@@ -63,10 +63,10 @@ class News_ctrl extends CI_Controller {
 	function newsDetailPage($newsId){
 	    $data = array();
 	    $data['newsDetail'] = $this->News_model->news_detail($newsId);
-	    
 	    $data['latest_news'] = $this->News_model->latest_news();
 		$data['menus'] = $this->News_model->menus();
-		$data['trending_news'] = $this->News_model->trending_news();
+		$data['trending_news'] = $this->News_model->trending_news($newsId);
+		
 		$data['tranding_news'] = $this->load->view('common/tranding_news',$data,true);
 		//$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 		$data['topmenu'] = $this->load->view('common/topmenu',$data,true);
@@ -85,7 +85,7 @@ class News_ctrl extends CI_Controller {
 	    $data['header'] = $this->load->view('common/header','',true);
 	    $data['footer'] = $this->load->view('common/footer','',true);
 	    $data['topmenu'] = $this->load->view('common/topmenu',$data,true);
-	    $data['brand_logo'] = $this->load->view('common/brand_logo','',true);
+	    //$data['brand_logo'] = $this->load->view('common/brand_logo','',true);
 	    $data['body'] = $this->load->view('pages/aboutus',$data,true);
 	    $this->load->view('common/layout',$data);
 	}

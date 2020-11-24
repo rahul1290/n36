@@ -45,7 +45,7 @@
 						</h1>
 						<div class="space-10"></div>
 						<?php $img = explode(',', $newsDetail[0]['media_files']); ?>
-						<img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=730&height=450">
+						<img src="<?php echo base_url('news_images/730X450/').$img[0]; ?>"/>
 						<?php echo $newsDetail[0]['content']; ?>
 					</div>
 					
@@ -86,16 +86,28 @@
 					<div class="space-40"></div>
 					<div class="next_prev">
 						<div class="row">
+							<?php 
+								$limit = count($trending_news);
+								$previous = rand(0,$limit-1);
+								$next = rand(0,$limit-1);
+								while($next== $previous){
+									$next = rand(0,$limit-1);
+								}
+							?>
 							<div class="col-lg-6 align-self-center">
 								<div class="next_prv_single border_left3">
 									<p>PREVIOUS NEWS</p>
-									<h3><a href="#">Kushner puts himself in middle of white houseâ€™s chaotic coronavirus response.</a></h3>
+									<h3><a href="<?php echo base_url('news/').$trending_news[$previous]['slug']; ?>">
+										<?php echo substr($trending_news[$previous]['title_hindi'],0,200); ?>
+									</a></h3>
 								</div>
 							</div>
 							<div class="col-lg-6 align-self-center">
 								<div class="next_prv_single border_left3">
 									<p>NEXT NEWS</p>
-									<h3><a href="#">C.I.A. Hunts for authentic virus totals in china, dismissing government tallies</a></h3>
+									<h3><a href="<?php echo base_url('news/').$trending_news[$next]['slug']; ?>">
+										<?php echo substr($trending_news[$next]['title_hindi'],0,200); ?>
+									</a></h3>
 								</div>
 							</div>
 						</div>
@@ -131,20 +143,23 @@
 						<h2 class="widget-title">Trending News</h2>
 						<div class="carousel_post_type3 nav_style1 owl-carousel">
 							<?php foreach($trending_news as $news){ ?>
+							
 							<div class="single_post post_type3">
+								<a href="<?php echo base_url('news/').$news['slug'];?>">
 								<div class="post_img">
-									<?php $img = explode(',', $news['media_files']); ?>
-                                        <img src="<?php echo base_url('/image_resize.php');?>?path=<?php echo 'news_images/'.$img[0]; ?>&width=350&height=250">	
+									<?php $img = explode(',', $news['media_files']); 
+											$newsSlugarray = explode('-', $news['slug']);
+											array_pop($newsSlugarray);
+									?>
+                                        <img src="<?php echo base_url('news_images/').$img[0];?>" width="350" height="250" alt="<?php echo implode(' ',$newsSlugarray); ?>" title="<?php echo implode(' ',$newsSlugarray); ?>"/>	
 									<span class="tranding">
 										<i class="fas fa-bolt"></i>
 									</span>
 								</div>
+								</a>
 								<div class="single_post_text">
-									<h4><a href="post1.html">
-										<?php 
-    										$pos = strpos($news['title_hindi'],' ',150);
-    										echo substr($news['title_hindi'],0,$pos );
-                            			?>
+									<h4><a href="<?php echo base_url('news/').$news['slug']; ?>">
+										<?php echo substr($news['title_hindi'],0,200); ?>
 									</a></h4>
 									<div class="space-3"></div>
 									<div class=""><a href="#"></a>
@@ -152,6 +167,7 @@
 									</div>
 								</div>
 							</div>
+							
 							<?php } ?>
 						</div>
 					</div>
@@ -197,16 +213,18 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="single_post post_type3 mb30">
 						<div class="post_img">
-							<a href="#">
-								<img src="assets/img/bg/video4.jpg" alt="">
+							<a href="<?php echo base_url('news/').$news['slug']; ?>">
+							<?php $img = explode(',', $news['media_files']); 
+								$newsSlugarray = explode('-', $news['slug']);
+								array_pop($newsSlugarray);
+							?>
+								<img src="<?php echo base_url('news_images/730X450/').$img[0]; ?>" width="350" height="251" title="
+								<?php echo implode(' ',$newsSlugarray);?>" alt="<?php echo implode(' ',$newsSlugarray);?>"/>
 							</a>
 						</div>
 						<div class="single_post_text">
 							<h4><a href="<?php echo base_url('news/').$news['slug'];?>">
-							<?php
-                            	$pos = strpos($news['title_hindi'],' ',150);
-                            	echo substr($news['title_hindi'],0,$pos );
-	                        ?></a></h4>
+							<?php echo substr($news['title_hindi'],0,200 ); ?></a></h4>
 							<div class="">
 								<small><?php echo $this->my_library->time_elapsed_string($news['created_at']);?></small>
 							</div>	
@@ -214,7 +232,7 @@
 							<p class="post-p">
 							<?php
                             	//$pos = strpos($news['content'],' ',50); 
-                            	echo substr($news['content'],0,200 );
+                            	//echo substr($news['content'],0,200 );
 	                        ?>
 							</p>
 						</div>
