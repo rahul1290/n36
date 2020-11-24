@@ -1,12 +1,13 @@
 <?php 
 //checking if paramateres and file exists
-if(isset($_GET["path"]) && $_GET["path"] != "" && file_exists($_GET["path"]))
+
+if(isset($_GET["path"]) && $_GET["path"] != "")
 {
     $path = $_GET["path"];
     //getting extension type (jpg, png, etc)
     $type = explode(".", $path);
     $ext = strtolower($type[sizeof($type)-1]);
-    $ext = (!in_array($ext, array("jpeg","png","gif"))) ? "jpeg" : $ext;
+    $ext = (!in_array($ext, array("jpeg","png","gif","webp"))) ? "jpeg" : $ext;
 	
     //get image size
     $size = getimagesize($path);
@@ -98,9 +99,16 @@ if(isset($_GET["path"]) && $_GET["path"] != "" && file_exists($_GET["path"]))
         imagefill($output, 0, 0, $transparent);
     }
 
-    imagecopyresampled( $output, $source,  $dst_x, $dst_y, $src_x, $src_y, 
+		list($wid, $ht) = getimagesize($path);
+		$r = $wid / $ht;	
+		$ht = ceil($ht-($ht*abs($r-$wid/$ht)));
+    // imagecopyresampled( $output, $source,  $dst_x, $dst_y, $src_x, $src_y, 
+                        // $new_width-2*$dst_x, $new_height-2*$dst_y, 
+                        // $width-2*$src_x, $height-2*$src_y);
+			
+	imagecopyresampled( $output, $source,  0, 0, 0, 0, 
                         $new_width-2*$dst_x, $new_height-2*$dst_y, 
-                        $width-2*$src_x, $height-2*$src_y);
+                        $wid, $ht);
     //free resources
     ImageDestroy($source);
 
@@ -110,5 +118,5 @@ if(isset($_GET["path"]) && $_GET["path"] != "" && file_exists($_GET["path"]))
     $func($output); 
     //free resources
     ImageDestroy($output);
-}
+} 
 ?>

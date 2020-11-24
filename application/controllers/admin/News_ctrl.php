@@ -53,7 +53,7 @@ class News_ctrl extends CI_Controller {
 					$data['publish'] = 0;
 				}
 				$data['created_at'] = date('Y-m-d H:i:s');
-				$data['created_by'] = '1';
+				$data['created_by'] = $this->session->userdata('userid');
 				$newsId = $this->Admin_news_model->news_create($data);
 				if($newsId){
 					$this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|%,'),'-',$data['title_english']));
@@ -228,8 +228,8 @@ class News_ctrl extends CI_Controller {
 	            } else {
 	                $data['publish'] = 0;
 	            }
-	            $data['created_at'] = date('Y-m-d H:i:s');
-	            $data['created_by'] = '1';
+	            //$data['created_at'] = date('Y-m-d H:i:s');
+	            //$data['created_by'] = '1';
 	            $newsUpdate = $this->Admin_news_model->news_update($data,$newsId);
 	            if($newsUpdate){
 	                $this->Admin_news_model->news_slug($newsId,str_replace(str_split(' \\/:*?"<>()|%,'),'-',$data['title_english']));

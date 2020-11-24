@@ -2,8 +2,8 @@
 <div class="main-menu" id="header">	<a href="#top" class="up_btn up_btn1"><i class="far fa-chevron-double-up"></i></a>
 		<div class="main-nav clearfix is-ts-sticky">
 			<div class="container">
+				<img width="50" style="float: left;" src="<?php echo 'http://news-36.com/assets/img/logo/News-36logo.png'; ?>" alt="image">
 				<div class="row justify-content-between">
-	
 					<div class="col-6 col-lg-8">
 						<div class="newsprk_nav stellarnav">
 							<ul id="newsprk_menu">

@@ -20,7 +20,6 @@
 					<div class="bridcrumb">	<a href="<?php echo base_url();?>">Home</a> /<b><?php echo implode(' ',$newsSlugarray); ?></b></div>
 				</div>
 			</div>
-			<div class="space-30"></div>
 			<div class="row">
 				<div class="col-md-6 col-lg-8">
 					<div class="row">
@@ -43,9 +42,11 @@
 						<h1>
 							<?php echo $newsDetail[0]['title_hindi']; ?>
 						</h1>
+						<h7 class="text-secondary"><?php echo date('F d, Y',strtotime($newsDetail[0]['published_at'])); ?> / <?php echo $newsDetail[0]['name_h']; ?></h7>
 						<div class="space-10"></div>
 						<?php $img = explode(',', $newsDetail[0]['media_files']); ?>
 						<img src="<?php echo base_url('news_images/730X450/').$img[0]; ?>"/>
+						<div class="space-20"></div>
 						<?php echo $newsDetail[0]['content']; ?>
 					</div>
 					
@@ -159,7 +160,8 @@
 								</a>
 								<div class="single_post_text">
 									<h4><a href="<?php echo base_url('news/').$news['slug']; ?>">
-										<?php echo substr($news['title_hindi'],0,200); ?>
+										<?php //echo substr($news['title_hindi'],0,200); ?>
+										<?php echo $news['title_hindi']; ?>
 									</a></h4>
 									<div class="space-3"></div>
 									<div class=""><a href="#"></a>
@@ -224,7 +226,9 @@
 						</div>
 						<div class="single_post_text">
 							<h4><a href="<?php echo base_url('news/').$news['slug'];?>">
-							<?php echo substr($news['title_hindi'],0,200 ); ?></a></h4>
+							<?php //echo substr($news['title_hindi'],0,200 ); 
+								echo $news['title_hindi'];
+							?></a></h4>
 							<div class="">
 								<small><?php echo $this->my_library->time_elapsed_string($news['created_at']);?></small>
 							</div>	

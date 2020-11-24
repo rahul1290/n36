@@ -13,12 +13,14 @@
 	<meta property="og:title" content="<?php if(isset($newsDetail[0]['title_english'])){ echo $newsDetail[0]['title_hindi'];}?>">
 	<meta property="og:description" content="<?php if(isset($newsDetail[0]['title_english'])){ echo $newsDetail[0]['title_hindi'];}?>">
 	
-	<?php $img = explode(',', $newsDetail[0]['media_files']); ?>
+
+	<?php
+	if(isset($newsDetail)){ 
+	$img = explode(',', $newsDetail[0]['media_files']); ?>
 	<meta property="og:image" content="<?php echo base_url('news_images/200X154/').$img[0]; ?>">
 	<meta property="og:url" content="<?php echo base_url('news/').$newsDetail[0]['slug'];?>">
 	<meta name="twitter:card" content="<?php if(isset($newsDetail[0]['title_english'])){ echo $newsDetail[0]['title_hindi'];}?>">
-	
-	
+	<?php } ?>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
