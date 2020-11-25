@@ -15,12 +15,12 @@
 						<?php foreach($feature_news as $featurenews){ ?>
     						<div class="single_post post_type6 post_type7">
     							<div class="post_img gradient1">
-    								<a href="#">
+    								<a href="<?php echo base_url('news/').$featurenews['slug'];?>">
     									<?php $img = explode(',', $featurenews['media_files']); 
-										if(file_get_contents(base_url('news_images/').$img[0])){
-											$src = base_url('news_images/730X450/').$img[0];
+										if(file_get_contents($this->config->item('image_url').'news_images/'.$img[0])){
+											$src = $this->config->item('image_url').'news_images/730X450/'.$img[0];
 										} else {
-											$src = base_url('assets/img/logo/news-36logo_blur.png');
+											$src = $this->config->item('image_url').'assets/img/logo/news-36logo_blur.png';
 										}
 										?>										
 										<img src="<?php echo $src; ?>" width="510" height="340" />
@@ -32,7 +32,7 @@
     								</div> -->
     								<h4>
     									<a href="<?php echo base_url('news/').$featurenews['slug'];?>">
-                                			<?php echo substr($featurenews['title_hindi'],0,200); ?>
+                                			<?php echo mb_substr($featurenews['title_hindi'],0,200); ?>
                                 		</a>
     								</h4>
     								<div class="text-info">

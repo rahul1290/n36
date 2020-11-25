@@ -16,12 +16,12 @@ $todayNews = $today_story[0]['id'];
                     	<div class="single_post widgets_small">
                             <div class="post_img">
                                 <div class="img_wrap">
-                                    <a href="#">
+                                    <a href="<?php echo base_url('news/').$latestnews['slug'];?>">
                                     	<?php $img = explode(',', $latestnews['media_files']); 
-											if(file_get_contents(base_url('news_images/200X154/').$img[0])){
-												$src = base_url('news_images/200X154/').$img[0];
+											if(file_get_contents($this->config->item('image_url').'news_images/200X154/'.$img[0])){
+												$src = $this->config->item('image_url').'news_images/200X154/'.$img[0];
 											} else {
-												$src = base_url('assets/img/logo/news-36logo_blur.png');
+												$src = $this->config->item('image_url').'assets/img/logo/news-36logo_blur.png';
 											}
 										?>
 										<img src="<?php echo $src; ?>" />
@@ -31,7 +31,7 @@ $todayNews = $today_story[0]['id'];
                             <div class="single_post_text">
                             	<h4>
                             		<a href="<?php echo base_url('news/').$latestnews['slug'];?>">
-                            			<?php echo substr($latestnews['title_hindi'],0,200); ?>
+                            			<?php echo mb_substr($latestnews['title_hindi'],0,200); ?>
                             		</a>
                             	</h4>
                             	<div class="text-info">

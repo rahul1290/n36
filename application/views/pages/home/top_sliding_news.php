@@ -11,10 +11,10 @@
 									<div class="img_wrap">
 										<a href="<?php echo base_url('news/').$news['slug'];?>">
 											<?php $img = explode(',', $news['media_files']); 
-											if(file_get_contents(base_url('news_images/').$img[0])){
-												$src = base_url('news_images/200X154/').$img[0];
+											if(file_get_contents($this->config->item('image_url').'news_images/'.$img[0])){
+												$src = $this->config->item('image_url').'news_images/200X154/'.$img[0];
 											} else {
-												$src = base_url('assets/img/logo/news-36logo_blur.png');
+												$src = $this->config->item('image_url').'assets/img/logo/news-36logo_blur.png';
 											}
 											?>											
 											<img src="<?php echo $src; ?>" width="80" height="70" />
@@ -24,10 +24,7 @@
 								<div class="single_post_text">
 									<h4>
 										<a href="<?php echo base_url('news/').$news['slug'];?>">
-											<?php 
-    											 //$pos = strpos($news['title_hindi'],' ',190);
-    											 echo substr($news['title_hindi'],0,200);
-											?>
+											<?php echo mb_substr($news['title_hindi'],0,200); ?>
 										</a>
 									</h4>
 									<p>

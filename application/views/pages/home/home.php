@@ -17,12 +17,12 @@
 								<div class="single_post post_type6 xs-mb30">
 									<div class="post_img gradient1">
 										<?php $img = explode(',', $news['media_files']); ?>										
-										<img src="<?php echo base_url('news_images/').$img[0]; ?>"/>
+										<img src="<?php echo $this->config->item('image_url').'news_images/'.$img[0]; ?>"/>
 									</div>
 									<div class="single_post_text">
 										<h4>
     										<a class="play_btn1" href="<?php echo base_url('news/').$news['slug']; ?>">
-    											<?php echo substr($news['title_hindi'],0,200 ); ?>
+    											<?php echo mb_substr($news['title_hindi'],0,200); ?>
     										</a>
 										</h4>
 										<div class="space-8"></div>

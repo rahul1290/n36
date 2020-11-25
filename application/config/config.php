@@ -25,7 +25,7 @@ date_default_timezone_set('Asia/Kolkata');
 */
 //$config['base_url'] = 'http://news-36.com/';
 $config['base_url'] = 'http://localhost/n36/';
-
+$config['image_url'] = 'http://news-36.com/';
 /*
 |--------------------------------------------------------------------------
 | Index File
